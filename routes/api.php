@@ -14,12 +14,12 @@ use App\Http\Controllers\enrolmentcontroller;
 
 
     ], function () {
-      //
+//api routes
       Route::apiResource('/enrolment','enrolmentcontroller');
       Route::apiResource('/subject','subjectcontroller');
       Route::apiResource('/student','Studentcontroller');
 
-
+//auth routes
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
         Route::post('me', 'AuthController@me');
