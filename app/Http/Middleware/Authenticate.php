@@ -29,8 +29,10 @@ class Authenticate extends Middleware
          // return Auth::attempt(['token' => $request->token]);
          // return  auth();
          // return $request;
-         if(\App\TokenStore::where('auth_token',$request->token)->count()){
+         if(\App\TokenStore::where('auth_token',$request->header('Authorization'))->count()){
            return $next($request);
+
+           //$header = $request->header('Authorization');
 
          }
          return response()->json(['message' => 'unauthenticated']);
