@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2020 at 02:22 PM
+-- Generation Time: Aug 16, 2020 at 02:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -43,7 +43,9 @@ CREATE TABLE `courses` (
 INSERT INTO `courses` (`id`, `class_id`, `subject_name`, `subject_code`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Bangla', '101', '2020-06-21 00:53:03', '2020-06-21 00:53:03'),
 (2, 1, 'English', '102', '2020-06-21 00:53:15', '2020-06-21 00:53:15'),
-(3, 1, 'Math', '105', '2020-06-21 00:53:24', '2020-06-21 00:53:24');
+(3, 1, 'Math', '105', '2020-06-21 00:53:24', '2020-06-21 00:53:24'),
+(6, 1, 'Agricultural Science', '135', '2020-06-21 08:11:54', '2020-06-21 08:11:54'),
+(7, 1, 'Social Science', '135', '2020-06-21 08:13:23', '2020-06-21 08:13:23');
 
 -- --------------------------------------------------------
 
@@ -116,12 +118,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `students` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `class_id` int(11) NOT NULL,
+  `subject_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roll` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -130,11 +131,12 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `class_id`, `name`, `roll`, `address`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 0, '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', NULL, NULL),
-(4, 2, 'Human2', '121', 'dhaka', 'human2@gmail.com', '$2y$10$xwvdB46pAeMWOQvcpoMX5uKjn80uoZnSwS6PkG2qy191sGg1H634K', '2020-06-21 02:25:58', '2020-06-21 02:25:58'),
-(5, 2, 'Human2', '1213', 'dhaka', 'human2@gmail.com', '$2y$10$A0eqUnt.SdINsoKnNdiPj.XcYGmCnzRescEv/FkiMoxErXHMbrZSO', '2020-06-21 02:26:07', '2020-06-21 02:26:07'),
-(6, 1, 'Hmn', '12341', 'dhaka', 'hmn@gmail.com', '$2y$10$mMyS1XAUleaN91le7yZGZeKQD9f8nbO7B36jTZDEvMQZf4pYsb19C', '2020-06-21 02:32:46', '2020-06-21 02:32:46');
+INSERT INTO `students` (`id`, `subject_name`, `name`, `roll`, `address`, `email`, `created_at`, `updated_at`) VALUES
+(8, 'Bangla', 'Student1', '01', 'Dhaka', 'Student1@gmail.com', '2020-08-16 05:40:45', '2020-08-16 05:47:38'),
+(9, 'English', 'Student2', '02', 'Gazipur', 'Student2@gmail.com', '2020-08-16 05:55:18', '2020-08-16 05:55:18'),
+(10, 'Agricultural Science', 'Student3', '03', 'Mymensingh', 'Student3@gmail.com', '2020-08-16 05:56:07', '2020-08-16 05:56:07'),
+(11, 'Math, Bangla', 'Student4', '04', 'Tangail', 'Student4@gmail.com', '2020-08-16 05:56:32', '2020-08-16 05:59:35'),
+(12, 'Math, Bangla,English', 'Student5', '05', 'Sirajgonj', 'Student5@gmail.com', '2020-08-16 06:00:40', '2020-08-16 06:00:40');
 
 -- --------------------------------------------------------
 
@@ -155,8 +157,12 @@ CREATE TABLE `token_store` (
 --
 
 INSERT INTO `token_store` (`id`, `user_id`, `auth_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'xyz', '2020-06-21 05:52:50', '2020-06-21 05:52:50'),
-(5, 6, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5Mjc0MTE3OSwiZXhwIjoxNTkyNzQ0Nzc5LCJuYmYiOjE1OTI3NDExNzksImp0aSI6Ik5KNm5jd3NhREcyS0sxN1ciLCJzdWIiOjYsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.o-bP4eZ3yYCLXvGoGOMDjxY2OjeDQIxG_miIOQh-D6c', '2020-06-21 06:06:19', '2020-06-21 06:06:19');
+(10, 4, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5Mjc0NzExMSwiZXhwIjoxNTkyNzUwNzExLCJuYmYiOjE1OTI3NDcxMTEsImp0aSI6IjdFQUJvNXJOQ1FJekQ0cmoiLCJzdWIiOjQsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.SIoWKt6acKRk0-PbFEk_IHFj0OebM1pFViE1Dzl7xwU', '2020-06-21 07:45:11', '2020-06-21 07:45:11'),
+(12, 7, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTU5Mjc0OTM1NCwiZXhwIjoxNTkyNzUyOTU0LCJuYmYiOjE1OTI3NDkzNTQsImp0aSI6IlhSYnY3QWZud1hBVFdjZ0kiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.p5o8qfCnHtPIArVf5QcWNRfHFR0TQK_TqZBF5Lr9h_I', '2020-06-21 08:22:34', '2020-06-21 08:22:34'),
+(13, 7, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzU3NTMwNCwiZXhwIjoxNTk3NTc4OTA0LCJuYmYiOjE1OTc1NzUzMDQsImp0aSI6IkVYNThqNVBQUjF1aENxWFUiLCJzdWIiOjcsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.z35Ce1Gwd-6jVFsaTqE77OxciJZls0hjemLkcRDE61Q', '2020-08-16 04:55:04', '2020-08-16 04:55:04'),
+(14, 10, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTU5NzU3NzYzNSwiZXhwIjoxNTk3NTgxMjM1LCJuYmYiOjE1OTc1Nzc2MzUsImp0aSI6Ik5zdWpnTVhNWEdyTGZrZkUiLCJzdWIiOjEwLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.0po2-yi7QyS30YhMiKnvHl087_pwqU37hNY-ID1b0g8', '2020-08-16 05:33:55', '2020-08-16 05:33:55'),
+(15, 10, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzU3NzY2MywiZXhwIjoxNTk3NTgxMjYzLCJuYmYiOjE1OTc1Nzc2NjMsImp0aSI6IngwWmZ5cEFDZWh6MjlVWUoiLCJzdWIiOjEwLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.46IUkGQ7TTzhNvBqo6Vkuz-9qYjjFrls8ukC7VoQqfo', '2020-08-16 05:34:23', '2020-08-16 05:34:23'),
+(16, 10, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5NzU3ODQwNCwiZXhwIjoxNTk3NTgyMDA0LCJuYmYiOjE1OTc1Nzg0MDQsImp0aSI6IllJb3JLSktnMjI0enZxdzYiLCJzdWIiOjEwLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.LKGZoqHa3Bk5ECWGMwj0D0vrWW1wFvBoatd_2x7vha8', '2020-08-16 05:46:44', '2020-08-16 05:46:44');
 
 -- --------------------------------------------------------
 
@@ -180,10 +186,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'MRX', 'MRX@gmail.com', '2020-06-23 08:40:40', '$2y$10$LKN2Tb0Q6.ISQt5VOzlNtO3V6S.b11m6hPCu.PA4NZ9qVFC5XPP.S', NULL, NULL, NULL),
-(2, 'MRY', 'MrY@gmail.com', NULL, '$2y$10$d6KxhALMPvmP/nKR22aQZuJGOSpzKJAHmcW0dx1vZPhS61gdAoYjK', NULL, '2020-06-21 04:41:09', '2020-06-21 04:41:09'),
-(4, 'MRY', 'MrYY@gmail.com', NULL, '$2y$10$9UF2YgOHZ1wOtcck8vzZBOfB6LDwxLjkfRMgFxAT6JaB2V.rcUXva', NULL, '2020-06-21 04:45:47', '2020-06-21 04:45:47'),
-(6, 'MRZ', 'MrZ@gmail.com', NULL, '$2y$10$s.tfsLCx60raA/SoWaZkuua6FlfKZsYnA5vET2rKo0YWDmNeG2BBO', NULL, '2020-06-21 04:46:45', '2020-06-21 04:46:45');
+(9, 'mrx', 'mrx@gmail.com', NULL, '$2y$10$LKN2Tb0Q6.ISQt5VOzlNtO3V6S.b11m6hPCu.PA4NZ9qVFC5XPP.S', NULL, NULL, NULL),
+(10, 'mru', 'mru@gmail.com', NULL, '$2y$10$lrCJI2UwCaqG2Om.ktN3lOA0HBmxs3aqXWVfJpRoTQ08YT1Y/oT2.', NULL, '2020-08-16 05:33:54', '2020-08-16 05:33:54');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +244,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `enrolments`
@@ -264,19 +268,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `token_store`
 --
 ALTER TABLE `token_store`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

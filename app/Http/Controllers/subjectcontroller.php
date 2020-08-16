@@ -14,9 +14,9 @@ class subjectcontroller extends Controller
      */
     public function index()
     {
-      $indx=new course;
-      $indx=course::get();
-      return response()->json($indx);
+      $indxx=new course;
+      $indxx=course::get();
+      return response()->json($indxx);
     }
 
     /**

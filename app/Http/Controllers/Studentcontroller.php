@@ -35,23 +35,23 @@ class Studentcontroller extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-        'class_id' => 'required',
+        'subject_name' => 'required',
         'name' => 'required',
         'roll' => 'required|unique:students',
         'address' => 'required',
         'email' => 'required',
-        'password' => 'required',
+
 
     ]);
 
     //  student::create($request->all());
     $data=array();
-    $data['class_id']=$request->class_id;
+    $data['subject_name']=$request->subject_name;
     $data['name']=$request->name;
     $data['roll']=$request->roll;
     $data['address']=$request->address;
     $data['email']=$request->email;
-    $data['password']=Hash::make($request->password);
+    //$data['password']=Hash::make($request->password);
 
      student::create($data);
         return response ('Data Stored');
@@ -87,22 +87,22 @@ class Studentcontroller extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'class_id' => 'required',
+        'subject_name' => 'required',
         'name' => 'required',
         'roll' => 'required',
         'address' => 'required',
         'email' => 'required',
-        'password' => 'required',
+
 
     ]);
 
     $data=array();
-    $data['class_id']=$request->class_id;
+    $data['subject_name']=$request->subject_name;
     $data['name']=$request->name;
     $data['roll']=$request->roll;
     $data['address']=$request->address;
     $data['email']=$request->email;
-    $data['password']=Hash::make($request->password);
+
 
         student::where('id',$id)->update($data);
         return response('Updated');
