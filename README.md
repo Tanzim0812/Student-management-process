@@ -2,10 +2,9 @@
 - clone the project
 - goto project root
 - Database name is 'enrolment.sql'
-- subjectcontroller(model name: course) and Studentcontroller(model name: student) are two controllers for each crud operation
-<<<<<<< HEAD
-- user need to login first so (s)he can access different routes.
-"# Student-management" 
-=======
+- subjectcontroller(model name: course) and Studentcontroller(model name: student) are two controllers for each crud operation.
 - user need to register/login first so (s)he can access different routes.
->>>>>>> ca72530f405262ed4fb6ccbc8d7b1a3827696ab8
+- In postman, take three headers(Accept,Content-type and Authorization).
+- After registration completed, user get a token value,use the token value for login.
+- When you hit login, you will get a token value, paste the token value inside 'Authorization header' to access all the api routes and auth routes(except login,regiser route)
+
